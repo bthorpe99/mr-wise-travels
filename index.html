@@ -1054,6 +1054,39 @@
     .form-row { grid-template-columns: 1fr; }
   }
 
+
+  /* ===== EMPTY STATES ===== */
+  .empty-state {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    max-width: 540px;
+    margin: 0 auto 3rem;
+  }
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  .empty-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .empty-title em { color: var(--sage); font-style: italic; }
+  .empty-sub {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  /* Dark variant for Suggest section */
+  .empty-state-dark .empty-title { color: var(--paper); }
+  .empty-state-dark .empty-title em { color: var(--gold-soft); }
+  .empty-state-dark .empty-sub { color: rgba(244,237,224,0.7); }
+
 </style>
 </head>
 <body>
@@ -1320,29 +1353,12 @@
       <p>Real stories from real trips. Read what past travelers have to say — then add your own.</p>
     </div>
 
-    <!-- Seed reviews -->
-    <div class="reviews-grid" id="reviewsGrid">
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">London was a dream. Alphonso handled everything — the hotel, the game tickets, the pub crawl. I showed up and just enjoyed. Best trip of my life.</p>
-        <div class="review-author">Marcus T.</div>
-        <div class="review-date">London · October 2023</div>
-      </div>
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">I was nervous about international travel but Mr. Wise made it seamless. From the airport to the hotel to every excursion — zero stress, all fun.</p>
-        <div class="review-author">Keisha R.</div>
-        <div class="review-date">London · October 2023</div>
-      </div>
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">Already booked Rio. After seeing what he put together for London, I trust him completely. The group vibe, the itinerary, the energy — unmatched.</p>
-        <div class="review-author">Devon W.</div>
-        <div class="review-date">London · October 2023</div>
-      </div>
+    <!-- Reviews grid (starts empty) -->
+    <div class="reviews-grid" id="reviewsGrid"></div>
+    <div class="empty-state reveal" id="reviewsEmpty">
+      <div class="empty-icon">✈️</div>
+      <p class="empty-title serif"><em>Be the first.</em></p>
+      <p class="empty-sub">No reviews yet. If you've traveled with us, share your experience below — yours will be the first one here.</p>
     </div>
 
     <!-- Write a review -->
@@ -1398,57 +1414,12 @@
     </div>
 
     <div class="suggest-grid">
-      <!-- Voting list -->
+      <!-- Voting list (starts empty) -->
       <div class="suggest-list reveal" id="suggestList">
-        <div class="suggest-item" data-id="tokyo">
-          <div class="suggest-item-votes">
-            <button class="vote-btn" onclick="vote('tokyo',this)">▲</button>
-            <span class="vote-count" id="v-tokyo">14</span>
-          </div>
-          <div class="suggest-item-info">
-            <div class="suggest-item-name">🇯🇵 Tokyo, Japan</div>
-            <div class="suggest-item-desc">Culture, food, nightlife — three cities in one</div>
-          </div>
-        </div>
-        <div class="suggest-item" data-id="cancun">
-          <div class="suggest-item-votes">
-            <button class="vote-btn" onclick="vote('cancun',this)">▲</button>
-            <span class="vote-count" id="v-cancun">11</span>
-          </div>
-          <div class="suggest-item-info">
-            <div class="suggest-item-name">🇲🇽 Cancún, Mexico</div>
-            <div class="suggest-item-desc">Beaches, all-inclusive resorts, Mayan ruins</div>
-          </div>
-        </div>
-        <div class="suggest-item" data-id="ghana">
-          <div class="suggest-item-votes">
-            <button class="vote-btn" onclick="vote('ghana',this)">▲</button>
-            <span class="vote-count" id="v-ghana">9</span>
-          </div>
-          <div class="suggest-item-info">
-            <div class="suggest-item-name">🇬🇭 Accra, Ghana</div>
-            <div class="suggest-item-desc">Year of Return energy — roots, culture, and coast</div>
-          </div>
-        </div>
-        <div class="suggest-item" data-id="paris">
-          <div class="suggest-item-votes">
-            <button class="vote-btn" onclick="vote('paris',this)">▲</button>
-            <span class="vote-count" id="v-paris">8</span>
-          </div>
-          <div class="suggest-item-info">
-            <div class="suggest-item-name">🇫🇷 Paris, France</div>
-            <div class="suggest-item-desc">Fashion week, food, architecture — forever iconic</div>
-          </div>
-        </div>
-        <div class="suggest-item" data-id="bali">
-          <div class="suggest-item-votes">
-            <button class="vote-btn" onclick="vote('bali',this)">▲</button>
-            <span class="vote-count" id="v-bali">6</span>
-          </div>
-          <div class="suggest-item-info">
-            <div class="suggest-item-name">🇮🇩 Bali, Indonesia</div>
-            <div class="suggest-item-desc">Temples, terraced rice fields, world-class resorts</div>
-          </div>
+        <div class="empty-state empty-state-dark" id="suggestEmpty">
+          <div class="empty-icon">🌍</div>
+          <p class="empty-title serif"><em>Open canvas.</em></p>
+          <p class="empty-sub">No destinations submitted yet. Drop the first one — what's the trip you've been dreaming about?</p>
         </div>
         <div id="userSuggestions"></div>
       </div>
@@ -1571,6 +1542,8 @@
 
     // Add card to grid
     const grid = document.getElementById('reviewsGrid');
+    const emptyR = document.getElementById('reviewsEmpty');
+    if (emptyR) emptyR.style.display = 'none';
     const stars = '★'.repeat(selectedStars) + '☆'.repeat(5 - selectedStars);
     const card = document.createElement('div');
     card.className = 'review-card';
@@ -1614,6 +1587,8 @@
 
     const uid = 'user_' + Date.now();
     const list = document.getElementById('userSuggestions');
+    const emptyS = document.getElementById('suggestEmpty');
+    if (emptyS) emptyS.style.display = 'none';
     const item = document.createElement('div');
     item.className = 'suggest-item';
     item.dataset.id = uid;
